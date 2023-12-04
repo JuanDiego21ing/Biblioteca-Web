@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+    <title>Ingreso al Sistema</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 80px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo para resaltar campos con error */
+        .was-validated .form-group input:invalid,
+        .was-validated .form-group select:invalid,
+        .was-validated .form-group textarea:invalid {
+            background-color: #ffb6c1; /* Rojo claro para resaltar campos con error */
+        }
+
+        /* Estilo para el mensaje de error */
+        .error-message {
+            color: #dc3545; /* Rojo oscuro para mensajes de error */
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+                        <form action="" method="post" class="needs-validation" novalidate>
+
+                            {% csrf_token %}
+
+                            <div class="form-group {% if form.username.errors %}was-validated{% endif %}">
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                                <div class="error-message">
+                                    {{ form.username.errors }}
+                                </div>
+                            </div>
+
+                            <div class="form-group {% if form.password.errors %}was-validated{% endif %}">
+                                {{ form.password.label_tag }}
+                                {{ form.password }}
+                                <div class="error-message">
+                                    {{ form.password.errors }}
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+
+                            {% if form.errors %}
+                                <div class="error-message mt-3">
+                                    Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.
+                                </div>
+                            {% endif %}
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Añade la referencia a los scripts de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+        integrity="sha384-pzjw8d+opEeLXAtKCAwfv7TO/JXL9wD7etw3yxUyo2F/G/O+2iEPJY8vi6Mz9D8"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy5tKrhJFZO9KgA0J44/IbImS+D5QT2S1"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
+
+
