@@ -8,30 +8,32 @@
         <h2>Agregar Libro</h2>
         <div class="card">
             <div class="card-body">
-                <form action="" method="post">
+                <form action="/registrarLibros/" method="post">{% csrf_token %}
                     <div class="form-group">
                         <input type="text" id="txtid" name="txtid" class="form-control" placeholder="ID" 
                             minlength="6" maxlength="6" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="txttitulo" name="txttitulo" class="form-control" placeholder="titulo" 
-                             maxlength="50" required>
+                        <input type="text" id="txttitulo" name="txttitulo" class="form-control" placeholder="Titulo" 
+                             maxlength="70" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="txtid" name="txtid" class="form-control" placeholder="ID" 
-                            minlength="6" maxlength="6" required>
+                        <input type="text" id="txtautor" name="txtautor" class="form-control" placeholder="Autor" 
+                             maxlength="70" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="txtid" name="txtid" class="form-control" placeholder="ID" 
-                            minlength="6" maxlength="6" required>
+                        <input type="text" id="txtedito" name="txtedito" class="form-control" placeholder="Editorial" 
+                             maxlength="70" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="txtid" name="txtid" class="form-control" placeholder="ID" 
-                            minlength="6" maxlength="6" required>
+                        <input type="date" id="datefecha" name="datefecha" class="form-control" placeholder="Fecha"  required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="txtid" name="txtid" class="form-control" placeholder="ID" 
-                            minlength="6" maxlength="6" required>
+                        <input type="text" id="txtgen" name="txtgen" class="form-control" placeholder="Genero" 
+                             maxlength="70" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Registrar Libro</button>
                     </div>
                 </form>
             </div>
@@ -44,23 +46,28 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>ID</th>
                         <th>Titulo</th>
                         <th>Autor</th>
                         <th>Editorial</th>
-                        <th>Fecha</th>
+                        <th>Fecha Publicacion</th>
                         <th>Genero</th>
+                        <th colspan="2">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for c in libros %}
                     <tr>
+                        <td>{{forloop.counter}}</td>
                         <td>{{c.id}}</td>
                         <td>{{c.titulo}}</td>
                         <td>{{c.autor}}</td>
                         <td>{{c.editorial}}</td>
                         <td>{{c.fecha}}</td>
                         <td>{{c.genero}}</td>
+                        <td><a href="edicionLibro/{{c.id}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminacionLibro/{{c.id}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

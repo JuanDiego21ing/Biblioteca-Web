@@ -1,0 +1,45 @@
+{% extends "./base.html" %}
+
+{% block title %} Biblioteca {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edicion de Libro</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarLibro/" method="post">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtid" name="txtid" value="{{Libro.id}}" class="form-control" placeholder="ID" 
+                            minlength="6" maxlength="6" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txttitulo" name="txttitulo" value="{{Libro.titulo}}" class="form-control" placeholder="Titulo" 
+                             maxlength="70" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtautor" name="txtautor" value="{{Libro.autor}}" class="form-control" placeholder="Autor" 
+                             maxlength="70" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtedito" name="txtedito" value="{{Libro.editorial}}"  class="form-control" placeholder="Editorial" 
+                             maxlength="70" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="datefecha" name="datefecha" value="{{Libro.fecha}}" class="form-control" placeholder="Fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtgen" name="txtgen" value="{{Libro.genero}}" class="form-control" placeholder="Genero" 
+                             maxlength="70" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Editar Libro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
