@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Simple</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" 
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <a class="navbar-brand" href="#">Biblioteca</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Libros<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'gestionUs' %}">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Autores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'gestionEd' %}">Editoriales</a>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="#">
+                  <i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión
+              </a>
+          </li>
+          
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="{% url 'login' %}">
+                  <i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión
+              </a> 
+          </li>
+            {% endif %}
+
+          </ul>
+        </div>
+      </nav>
+
+      {% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2>Registrar autores</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarAutores/" method="post">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtidA" name="txtidA" class="form-control" placeholder="ID" 
+                            minlength="6" maxlength="6" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtNomAut" name="txtNomAut" class="form-control" placeholder="nombre" 
+                             maxlength="70" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtapeAut" name="txtapeAut" class="form-control" placeholder="apellido" 
+                             maxlength="70" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Registrar Autor</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Autores</h1>
+        <div class="table-responsive py=2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in Autores %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{c.idAu}}</td>
+                        <td>{{c.nomAu}}</td>
+                        <td>{{c.apellAu}}</td>
+                        <td><a href="edicionLibro/{{c.id}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="{% url 'eliminacionAutores' idAu=c.idAu %}" class="btn btn-danger btnEliminacion"
+                                onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>
