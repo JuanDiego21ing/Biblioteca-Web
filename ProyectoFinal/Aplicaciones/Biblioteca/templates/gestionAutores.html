@@ -96,8 +96,7 @@
                         <td>{{c.nomAu}}</td>
                         <td>{{c.apellAu}}</td>
                         <td><a href="edicionLibro/{{c.id}}" class="btn btn-info">Editar</a></td>
-                        <td><a href="{% url 'eliminacionAutores' idAu=c.idAu %}" class="btn btn-danger btnEliminacion"
-                                onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a></td>
+                        <td><a href="eliminacionLibro/{{c.id}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

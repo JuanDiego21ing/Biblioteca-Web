@@ -54,7 +54,7 @@
         <h2>Registrar editoriales</h2>
         <div class="card">
             <div class="card-body">
-                <form action="/registrarEditoriales/" method="post">{% csrf_token %}
+                <form action="" method="post">{% csrf_token %}
                     <div class="form-group">
                         <input type="text" id="txtidEdi" name="txtidEdi" class="form-control" placeholder="ID" 
                             minlength="6" maxlength="6" required>
@@ -84,14 +84,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for c in Editoriales %}
+                    {% for c in libros %}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td>{{c.idEdi}}</td>
-                        <td>{{c.nomEdi}}</td>
+                        <td>{{c.id}}</td>
+                        <td>{{c.titulo}}</td>
+                        <td>{{c.autor}}</td>
+                        <td>{{c.editorial}}</td>
                         <td><a href="edicionLibro/{{c.id}}" class="btn btn-info">Editar</a></td>
-                        <td><a href="{% url 'eliminacionEditoriales' idEdi=c.idEdi %}" class="btn btn-danger btnEliminacion"
-                            onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">Eliminar</a></td>
+                        <td><a href="eliminacionLibro/{{c.id}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
