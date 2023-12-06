@@ -30,6 +30,13 @@ class Autores(models.Model):
     idAu = models.CharField(primary_key=True, max_length=6)
     nomAu = models.CharField(max_length=200)
     apellAu = models.CharField(max_length=200)
+
+# gestion Editoriales
+
+class Editoriales(models.Model):
+    idEdi = models.CharField(primary_key=True, max_length=6)
+    nomEdi = models.CharField(max_length=200)
+    
     
     
 
